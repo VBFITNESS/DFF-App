@@ -5,105 +5,154 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111827">
 <link rel="manifest" href="manifest.webmanifest">
-<title>DFF Personal v7</title>
+<title>DFF Personal v8</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#f3f4f6;color:#111827}
-header{background:#111827;color:#fff;padding:18px 16px;position:sticky;top:0;z-index:5}h1{margin:0;font-size:23px}header small{opacity:.78}
-main{max-width:1100px;margin:auto;padding:14px}.card{background:#fff;border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 2px 10px #0000000d}
-h2{font-size:18px;margin:0 0 12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-label{font-size:13px;font-weight:650;display:block}input,select,button{width:100%;padding:11px;border:1px solid #d1d5db;border-radius:10px;font:inherit}
-button{background:#111827;color:#fff;border:0;font-weight:700}.secondary{background:#e5e7eb;color:#111827}.danger{background:#b91c1c}.row{display:flex;gap:8px}.row>*{flex:1}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.kpi{background:#f9fafb;border-radius:12px;padding:12px}.kpi b{font-size:20px;display:block}
-.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:7px;border-bottom:1px solid #e5e7eb;text-align:left;white-space:nowrap}
-.note{font-size:12px;color:#6b7280}.pill{display:inline-block;background:#f3f4f6;border-radius:999px;padding:5px 9px;margin:3px;font-size:12px}
-.suppgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.supp{border:1px solid #e5e7eb;border-radius:10px;padding:9px;font-size:13px}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#f3f4f6;color:#111827}
+header{background:#111827;color:#fff;padding:18px 16px;position:sticky;top:0;z-index:5}
+h1{margin:0;font-size:23px}header small{opacity:.78}
+main{max-width:1200px;margin:auto;padding:14px}
+.card{background:#fff;border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 2px 10px #0000000d}
+h2{font-size:18px;margin:0 0 12px}
+h3{font-size:15px;margin:14px 0 8px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+label{font-size:13px;font-weight:650;display:block}
+input,select,button{width:100%;padding:11px;border:1px solid #d1d5db;border-radius:10px;font:inherit}
+button{background:#111827;color:#fff;border:0;font-weight:700;cursor:pointer}
+button.secondary{background:#e5e7eb;color:#111827}
+button.danger{background:#b91c1c}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.kpi{background:#f9fafb;border-radius:12px;padding:12px}.kpi b{font-size:20px;display:block}
+.tablewrap{overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:980px}
+th,td{padding:8px;border-bottom:1px solid #e5e7eb;text-align:left;white-space:nowrap;vertical-align:top}
+th{background:#f9fafb;position:sticky;top:0}
+.note{font-size:12px;color:#6b7280}
+.pill{display:inline-block;background:#f3f4f6;border-radius:999px;padding:5px 9px;margin:3px;font-size:12px}
+.suppgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.supp{border:1px solid #e5e7eb;border-radius:10px;padding:9px;font-size:13px;display:flex;align-items:center;gap:8px}
+.supp input{width:auto;padding:0;margin:0}
 .foodrow{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #eee;padding:8px 0;font-size:13px}
-.take{line-height:1.55}.take h3{font-size:15px;margin:14px 0 5px}.status{font-weight:700}
-@media(max-width:700px){.grid{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.suppgrid{grid-template-columns:1fr 1fr}.row{flex-direction:column}}
+.take{line-height:1.55}.take h3{font-size:15px;margin:14px 0 5px}
+.status{font-weight:700}
+.customBox{margin-top:10px;padding:12px;border:1px dashed #cbd5e1;border-radius:12px;background:#fafafa}
+.hidden{display:none!important}
+.smallbtn{width:auto;padding:6px 9px}
+@media(max-width:800px){.grid,.grid3{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.suppgrid{grid-template-columns:1fr 1fr}.row{flex-direction:column}}
 </style>
 </head>
 <body>
-<header><h1>🔒 DFF Personal v7</h1><small>Daily Fix Format · Personal build · Base Burn 1,800 kcal/day · Walk/Run 70 kcal/km</small></header>
+<header><h1>🔒 DFF Personal v8</h1><small>Daily Fixed Format · Base Burn 1,800 kcal/day · Local data storage</small></header>
 <main>
 
 <section class="card">
 <h2>1. DAILY DFF LOG — Integrated Energy Flow</h2>
 <div class="grid">
+<div><label>Week</label><input id="week" type="text" placeholder="e.g. W25"></div>
+<div><label>Day</label><select id="day"></select></div>
 <div><label>Date</label><input id="date" type="date"></div>
-<div><label>Base Burn (locked)</label><input id="base" type="number" value="1800"></div>
-<div><label>Walk / Run (locked kcal/km)</label><input id="walkRate" type="number" value="70"></div>
+<div><label>Base Burn (locked)</label><input id="base" type="number" value="1800" readonly></div>
 <div><label>Workout 1</label><select id="workout1"></select></div>
-<div><label>Custom Workout 1 Burn (optional)</label><input id="customWorkout1" type="number" min="0"></div>
 <div><label>Workout 2</label><select id="workout2"></select></div>
-<div><label>Custom Workout 2 Burn (optional)</label><input id="customWorkout2" type="number" min="0"></div>
 <div><label>Cardio</label><select id="cardio"></select></div>
-<div><label>Distance (km)</label><input id="km" type="number" min="0" step="0.1" value="0"></div>
-<div><label>Custom Cardio Burn (optional)</label><input id="customCardio" type="number" min="0"></div>
+<div id="cardioDistanceWrap"><label>Distance (km)</label><input id="km" type="number" min="0" step="0.01" value="0"></div>
 </div>
-<p class="note">Gross-burn model: Base + locked workout gross burn + cardio gross burn. Walk/Run = 70 × km. Cycling can use a saved template or custom gross burn.</p>
+
+<div id="customCardioBox" class="customBox hidden">
+<h3>Custom Cardio</h3>
+<div class="grid3">
+<div><label>Activity Type</label><select id="customActivity">
+<option>Walk</option><option>Run/Walk Combo</option><option>Pure Run</option><option>Cycling</option><option>Other</option>
+</select></div>
+<div><label>Body Weight (kg)</label><input id="customWeight" type="number" min="1" step="0.1" placeholder="Required for estimate"></div>
+<div><label>Distance (km)</label><input id="customDistance" type="number" min="0" step="0.01"></div>
+<div><label>Time (min)</label><input id="customTime" type="number" min="0" step="0.01"></div>
+<div><label>Speed (km/h)</label><input id="customSpeed" type="number" min="0" step="0.01"></div>
+<div><label>Estimated Burn</label><input id="customBurn" type="number" readonly placeholder="Enter any 2"></div>
+</div>
+<p id="customCardioNote" class="note">Enter any 2 of Distance, Time and Speed. The third is calculated automatically. Calorie burn is an estimate based on activity type and body weight.</p>
+</div>
+
+<div id="customCyclingBox" class="customBox hidden">
+<h3>Custom Cycling</h3>
+<div class="grid3">
+<div><label>Body Weight (kg)</label><input id="cycleWeight" type="number" min="1" step="0.1" placeholder="Required for estimate"></div>
+<div><label>Distance (km)</label><input id="cycleDistance" type="number" min="0" step="0.01"></div>
+<div><label>Time (min)</label><input id="cycleTime" type="number" min="0" step="0.01"></div>
+<div><label>Speed (km/h)</label><input id="cycleSpeed" type="number" min="0" step="0.01"></div>
+<div><label>Estimated Burn</label><input id="cycleBurn" type="number" readonly placeholder="Enter any 2"></div>
+</div>
+<p class="note">Enter any 2 of Distance, Time and Speed. The third is calculated automatically. Cycling burn uses a consistent MET-based estimate.</p>
+</div>
+
+<p class="note">Fixed cardio rates: Walk 60 kcal/km · Run/Walk Combo 70 kcal/km · Pure Run 75 kcal/km · Cycling 40 km 850 kcal · Cycling 50 km 1,100 kcal.</p>
 </section>
 
 <section class="card">
-<h2>Food / Recipe Intake</h2>
+<h2>2. FOOD / RECIPE</h2>
 <div class="grid">
-<div><label>Recipe / food</label><select id="recipe"></select></div>
-<div><label>Servings</label><input id="servings" type="number" min="0.1" step="0.1" value="1"></div>
+<div><label>Recipe / Food</label><select id="recipe"></select></div>
+<div><label>Servings</label><input id="servings" type="number" min="0.01" step="0.01" value="1.00"></div>
 </div>
-<button id="addFood" style="margin-top:10px">Add Food to Today</button>
+<div id="recipePreview" class="note" style="margin-top:8px">Select a recipe to preview calories and macros.</div>
+<button id="addFood" style="margin-top:10px">Add Food</button>
 <div id="foods" style="margin-top:8px"></div>
+
 <hr>
-<h3>Add / update recipe</h3>
-<div class="grid">
+<h3>Add / Update Recipe</h3>
+<div class="grid3">
 <div><label>Name</label><input id="rname"></div>
-<div><label>kcal / serving</label><input id="rkcal" type="number" min="0"></div>
-<div><label>Protein g / serving</label><input id="rprotein" type="number" min="0" step="0.1"></div>
+<div><label>kcal / serving</label><input id="rkcal" type="number" min="0" step="0.1"></div>
+<div><label>Protein g / serving</label><input id="rprotein" type="number" min="0" step="0.01"></div>
+<div><label>Carbs g / serving</label><input id="rcarbs" type="number" min="0" step="0.01"></div>
+<div><label>Fat g / serving</label><input id="rfat" type="number" min="0" step="0.01"></div>
+<div><label>Fiber g / serving</label><input id="rfiber" type="number" min="0" step="0.01"></div>
 </div>
 <button id="addRecipe" class="secondary" style="margin-top:10px">Save Recipe</button>
 <div id="recipeList" class="note" style="margin-top:8px"></div>
 </section>
 
 <section class="card">
-<h2>Supplements</h2>
+<h2>3. SUPPLEMENTS</h2>
 <div id="supps" class="suppgrid"></div>
 </section>
 
 <section class="card">
-<h2>Today's Result</h2>
-<div class="kpis">
-<div class="kpi">Total Burn<b id="burn">0</b></div>
-<div class="kpi">Intake<b id="intake">0</b></div>
-<div class="kpi">Deficit<b id="deficit">0</b></div>
-<div class="kpi">Protein<b id="protein">0 g</b></div>
-</div>
+<h2>4. TODAY'S RESULT</h2>
+<div class="tablewrap"><table id="todayTable"></table></div>
 <button id="saveDay" style="margin-top:12px">🔒 Save / Update Day</button>
 <p id="saved" class="note"></p>
 </section>
 
 <section class="card">
-<h2>2. TOTAL & AVERAGE</h2>
-<div class="tablewrap"><table id="summary"></table></div>
+<h2>5. WEEKLY DFF LOG</h2>
+<div class="tablewrap"><table id="weekly"></table></div>
+<p class="note">Shows D1–D7 for the selected Week. TOTAL and AVG are calculated from the days that contain data. Supplement checkboxes are displayed but are not averaged numerically.</p>
 </section>
 
 <section class="card">
-<h2>3. ACTIVITY AGGREGATION</h2>
+<h2>6. ACTIVITY AGGREGATION</h2>
 <div id="activity"></div>
 </section>
 
 <section class="card">
-<h2>4. PRO-TAKEAWAY — Recomposition Focus</h2>
-<div id="takeaway" class="take note">Log at least one day to generate the DFF takeaway.</div>
-</section>
-
-<section class="card">
-<h2>Weekly DFF Log</h2>
-<div class="tablewrap"><table id="weekly"></table></div>
+<h2>7. PRO-TAKEAWAY</h2>
+<div class="grid">
+<div><label>Goal / Focus</label><select id="goal">
+<option>Fat Loss</option><option>Weight Loss</option><option>Maintenance</option><option>Recomposition</option><option>Muscle Gain / Weight Gain</option><option>Custom / Other</option>
+</select></div>
+<div id="customGoalWrap" class="hidden"><label>Custom Goal</label><input id="customGoal"></div>
+</div>
+<div id="takeaway" class="take note" style="margin-top:10px">Log at least one day to generate the Pro-Takeaway.</div>
 </section>
 
 <section class="card">
 <h2>Workout Templates</h2>
 <div class="grid">
 <div><label>Workout name</label><input id="wname"></div>
-<div><label>Gross burn kcal</label><input id="wburn" type="number" min="0"></div>
+<div><label>Gross burn kcal</label><input id="wburn" type="number" min="0" step="1"></div>
 </div>
 <button id="addWorkout" class="secondary" style="margin-top:10px">Save / Update Workout</button>
 <div id="workouts" class="note" style="margin-top:8px"></div>
@@ -121,129 +170,261 @@ button{background:#111827;color:#fff;border:0;font-weight:700}.secondary{backgro
 </main>
 
 <script>
-const KEY="DFF_PERSONAL_V7";
+const KEY="DFF_PERSONAL_V8";
 const DEFAULT={
- settings:{base:1800,walkRate:70},
+ settings:{base:1800},
  workouts:[["Rest",0],["Back + Biceps",425],["Core + Shoulders",415],["Chest + Triceps",null],["Leg Day",null]],
  recipes:[],
  days:{},
- supplements:["Fish Oil","Creatine","Magnesium","Ashwagandha","D3","Isabgol"]
+ supplements:["Fish Oil","Creatine","Magnesium","Ashwagandha","D3","Isabgol","Other 1","Other 2","Other 3"],
+ goal:"Fat Loss",
+ customGoal:""
 };
 let db=loadDB();
 function clone(x){return JSON.parse(JSON.stringify(x))}
-function loadDB(){try{let x=JSON.parse(localStorage.getItem(KEY));return x&&x.settings&&x.days?x:clone(DEFAULT)}catch(e){return clone(DEFAULT)}}
+function loadDB(){
+ try{
+  let x=JSON.parse(localStorage.getItem(KEY));
+  if(x&&x.settings&&x.days)return migrate(x);
+ }catch(e){}
+ return clone(DEFAULT);
+}
+function migrate(x){
+ x.settings=x.settings||{base:1800}; x.settings.base=1800;
+ x.workouts=Array.isArray(x.workouts)?x.workouts:clone(DEFAULT.workouts);
+ x.recipes=Array.isArray(x.recipes)?x.recipes:[];
+ x.days=x.days||{};
+ x.supplements=Array.isArray(x.supplements)?x.supplements:clone(DEFAULT.supplements);
+ ["Other 1","Other 2","Other 3"].forEach(s=>{if(!x.supplements.includes(s))x.supplements.push(s)});
+ x.goal=x.goal||"Fat Loss"; x.customGoal=x.customGoal||"";
+ return x;
+}
 function persist(){localStorage.setItem(KEY,JSON.stringify(db))}
 const $=id=>document.getElementById(id);
 function todayISO(){return new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Kolkata",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date())}
 $("date").value=todayISO();
+$("day").innerHTML=Array.from({length:7},(_,i)=>`<option value="${i+1}">D${i+1}</option>`).join("");
+$("week").value="W25";
 
-function ensureDay(date){
- if(!db.days[date]) db.days[date]={workout1:"",customWorkout1:0,workout2:"",customWorkout2:0,cardio:"",km:0,customCardio:0,foods:[],supp:{}};
- return db.days[date];
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function keyFor(week,day){return String(week||"").trim().toUpperCase()+"|D"+Number(day||1)}
+function ensureDay(){
+ const week=$("week").value.trim().toUpperCase()||"W25", day=Number($("day").value||1), date=$("date").value;
+ const key=keyFor(week,day);
+ if(!db.days[key])db.days[key]={week,day,date,workout1:"",workout2:"",cardio:"",km:0,customCardio:{},customCycling:{},foods:[],supp:{},daru:0};
+ return db.days[key];
 }
-function workoutBurn(name,custom){
- if(Number(custom)>0)return Number(custom);
+function workoutBurn(name){
  let w=db.workouts.find(x=>x[0]===name);
  return w&&w[1]!=null?Number(w[1]):0;
 }
+function calcMETCalories(met,weight,timeMin){return Math.round(Number(met)*3.5*Number(weight)*Number(timeMin)/200)}
 function cardioBurn(d){
- if(Number(d.customCardio)>0)return Number(d.customCardio);
- if(d.cardio==="Walk"||d.cardio==="Run")return Math.round(Number(d.km||0)*Number(db.settings.walkRate||70));
+ if(d.cardio==="Walk")return Math.round(Number(d.km||0)*60);
+ if(d.cardio==="Run/Walk Combo")return Math.round(Number(d.km||0)*70);
+ if(d.cardio==="Pure Run")return Math.round(Number(d.km||0)*75);
  if(d.cardio==="Cycling 40 km")return 850;
+ if(d.cardio==="Cycling 50 km")return 1100;
+ if(d.cardio==="Custom Cardio")return Number(d.customCardio?.burn||0);
+ if(d.cardio==="Custom Cycling")return Number(d.customCycling?.burn||0);
  return 0;
 }
-function burnFor(d){return Number(db.settings.base)+workoutBurn(d.workout1,d.customWorkout1)+workoutBurn(d.workout2,d.customWorkout2)+cardioBurn(d)}
-function proteinFor(d){return Number(d.protein||d.foods.reduce((a,f)=>a+Number(f.protein||0),0))}
-function renderSelectors(){
- let wo='<option value="">None</option>'+db.workouts.map(w=>`<option>${esc(w[0])}</option>`).join("");
- $("workout1").innerHTML=wo;$("workout2").innerHTML=wo;
- $("cardio").innerHTML='<option value="">None</option><option>Walk</option><option>Run</option><option>Cycling 40 km</option><option>Custom Cardio</option>';
- $("recipe").innerHTML='<option value="">Select recipe</option>'+db.recipes.map((r,i)=>`<option value="${i}">${esc(r.name)} — ${r.kcal} kcal / ${r.protein}g</option>`).join("");
- $("supps").innerHTML=db.supplements.map(s=>`<label class="supp"><input type="checkbox" data-supp="${esc(s)}"> ${esc(s)}</label>`).join("");
+function burnFor(d){
+ return 1800+workoutBurn(d.workout1)+workoutBurn(d.workout2)+cardioBurn(d);
 }
-function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
-function loadDay(){
- let d=ensureDay($("date").value);
- $("base").value=db.settings.base;$("walkRate").value=db.settings.walkRate;
- $("workout1").value=d.workout1||"";$("customWorkout1").value=d.customWorkout1||"";
- $("workout2").value=d.workout2||"";$("customWorkout2").value=d.customWorkout2||"";
- $("cardio").value=d.cardio||"";$("km").value=d.km||0;$("customCardio").value=d.customCardio||"";
- document.querySelectorAll("[data-supp]").forEach(x=>x.checked=!!d.supp[x.dataset.supp]);
- renderFoods();renderRecipeList();renderWorkoutList();renderResult();
+function foodTotals(d){
+ return (d.foods||[]).reduce((a,f)=>({
+  kcal:a.kcal+Number(f.kcal||0),protein:a.protein+Number(f.protein||0),
+  carbs:a.carbs+Number(f.carbs||0),fat:a.fat+Number(f.fat||0),fiber:a.fiber+Number(f.fiber||0)
+ }),{kcal:0,protein:0,carbs:0,fat:0,fiber:0});
 }
 function syncForm(){
- let d=ensureDay($("date").value);
- d.workout1=$("workout1").value;d.customWorkout1=Number($("customWorkout1").value||0);
- d.workout2=$("workout2").value;d.customWorkout2=Number($("customWorkout2").value||0);
- d.cardio=$("cardio").value;d.km=Number($("km").value||0);d.customCardio=Number($("customCardio").value||0);
+ let d=ensureDay();
+ d.week=$("week").value.trim().toUpperCase()||"W25"; d.day=Number($("day").value||1); d.date=$("date").value;
+ d.workout1=$("workout1").value; d.workout2=$("workout2").value;
+ d.cardio=$("cardio").value; d.km=Number($("km").value||0);
+ d.customCardio={activity:$("customActivity").value,weight:Number($("customWeight").value||0),distance:Number($("customDistance").value||0),time:Number($("customTime").value||0),speed:Number($("customSpeed").value||0),burn:Number($("customBurn").value||0)};
+ d.customCycling={weight:Number($("cycleWeight").value||0),distance:Number($("cycleDistance").value||0),time:Number($("cycleTime").value||0),speed:Number($("cycleSpeed").value||0),burn:Number($("cycleBurn").value||0)};
+ d.daru=Number($("daru").value||0);
  document.querySelectorAll("[data-supp]").forEach(x=>d.supp[x.dataset.supp]=x.checked);
  return d;
 }
+function loadDay(){
+ let d=ensureDay();
+ $("week").value=d.week||$("week").value;$("day").value=String(d.day||1);$("date").value=d.date||todayISO();
+ $("workout1").value=d.workout1||"";$("workout2").value=d.workout2||"";$("cardio").value=d.cardio||"";
+ $("km").value=d.km||0;$("daru").value=d.daru||0;
+ let cc=d.customCardio||{},cy=d.customCycling||{};
+ $("customActivity").value=cc.activity||"Walk";$("customWeight").value=cc.weight||"";
+ $("customDistance").value=cc.distance||"";$("customTime").value=cc.time||"";$("customSpeed").value=cc.speed||"";$("customBurn").value=cc.burn||"";
+ $("cycleWeight").value=cy.weight||"";$("cycleDistance").value=cy.distance||"";$("cycleTime").value=cy.time||"";$("cycleSpeed").value=cy.speed||"";$("cycleBurn").value=cy.burn||"";
+ $("goal").value=db.goal||"Fat Loss";$("customGoal").value=db.customGoal||"";
+ renderSupps();document.querySelectorAll("[data-supp]").forEach(x=>x.checked=!!d.supp[x.dataset.supp]);
+ updateCustomUI();renderFoods();renderRecipePreview();renderRecipeList();renderWorkoutList();renderToday();renderWeekly();renderActivity();renderTakeaway();
+}
+function renderSelectors(){
+ let wo='<option value="">None</option>'+db.workouts.map(w=>`<option value="${esc(w[0])}">${esc(w[0])}${w[1]!=null?" — "+w[1]+" kcal":""}</option>`).join("");
+ $("workout1").innerHTML=wo;$("workout2").innerHTML=wo;
+ $("cardio").innerHTML='<option value="">None</option>'+
+ '<option value="Walk">Walk — 60 kcal/km</option>'+
+ '<option value="Run/Walk Combo">Run/Walk Combo — 70 kcal/km</option>'+
+ '<option value="Pure Run">Pure Run — 75 kcal/km</option>'+
+ '<option value="Cycling 40 km">Cycling — 40 km — 850 kcal</option>'+
+ '<option value="Cycling 50 km">Cycling — 50 km — 1,100 kcal</option>'+
+ '<option value="Custom Cardio">Custom Cardio</option>'+
+ '<option value="Custom Cycling">Custom Cycling</option>';
+ $("recipe").innerHTML='<option value="">Select recipe</option>'+db.recipes.map((r,i)=>`<option value="${i}">${esc(r.name)} — ${Number(r.kcal).toFixed(1)} kcal / serving</option>`).join("");
+}
+function renderSupps(){
+ $("supps").innerHTML=db.supplements.map(s=>`<label class="supp"><input type="checkbox" data-supp="${esc(s)}"> <span>${esc(s)}</span></label>`).join("");
+}
+function updateCustomUI(){
+ const c=$("cardio").value;
+ $("customCardioBox").classList.toggle("hidden",c!=="Custom Cardio");
+ $("customCyclingBox").classList.toggle("hidden",c!=="Custom Cycling");
+ $("cardioDistanceWrap").classList.toggle("hidden",c==="Custom Cardio"||c==="Custom Cycling");
+}
+function deriveTriplet(prefix){
+ const ids=[prefix+"Distance",prefix+"Time",prefix+"Speed"];
+ const vals=ids.map(id=>Number($(id).value||0));
+ const filled=vals.filter(v=>v>0);
+ if(filled.length<2)return;
+ let [d,t,s]=vals;
+ if(d>0&&t>0&&s<=0){s=d/(t/60);$(prefix+"Speed").value=s.toFixed(2)}
+ else if(d>0&&s>0&&t<=0){t=d/s*60;$(prefix+"Time").value=t.toFixed(2)}
+ else if(t>0&&s>0&&d<=0){d=s*t/60;$(prefix+"Distance").value=d.toFixed(2)}
+}
+function updateCustomBurns(){
+ deriveTriplet("custom");deriveTriplet("cycle");
+ const ctype=$("customActivity").value,w=Number($("customWeight").value||0),t=Number($("customTime").value||0);
+ let met={Walk:3.5,"Run/Walk Combo":7,"Pure Run":9,Cycling:7.5,Other:5}[ctype]||5;
+ $("customBurn").value=(w>0&&t>0)?calcMETCalories(met,w,t):"";
+ const cw=Number($("cycleWeight").value||0),ct=Number($("cycleTime").value||0);
+ $("cycleBurn").value=(cw>0&&ct>0)?calcMETCalories(7.5,cw,ct):"";
+ const d=ensureDay();
+ d.customCardio={activity:ctype,weight:w,distance:Number($("customDistance").value||0),time:Number($("customTime").value||0),speed:Number($("customSpeed").value||0),burn:Number($("customBurn").value||0)};
+ d.customCycling={weight:cw,distance:Number($("cycleDistance").value||0),time:Number($("cycleTime").value||0),speed:Number($("cycleSpeed").value||0),burn:Number($("cycleBurn").value||0)};
+ renderToday();renderWeekly();renderActivity();renderTakeaway();
+}
 function renderFoods(){
- let d=ensureDay($("date").value);
- $("foods").innerHTML=d.foods.length?d.foods.map((f,i)=>`<div class="foodrow"><span>${esc(f.name)} × ${f.servings}</span><span>${Math.round(f.kcal)} kcal · ${Number(f.protein).toFixed(1)}g <button onclick="removeFood(${i})" style="width:auto;padding:5px 8px">×</button></span></div>`).join(""):"<p class='note'>No food added today.</p>";
+ let d=ensureDay();
+ $("foods").innerHTML=d.foods?.length?d.foods.map((f,i)=>`<div class="foodrow"><span>${esc(f.name)} × ${Number(f.servings).toFixed(2)}</span><span>${Number(f.kcal).toFixed(1)} kcal · P ${Number(f.protein).toFixed(1)}g · C ${Number(f.carbs).toFixed(1)}g · F ${Number(f.fat).toFixed(1)}g · Fiber ${Number(f.fiber).toFixed(1)}g <button class="smallbtn" onclick="removeFood(${i})">×</button></span></div>`).join(""):"<p class='note'>No food added today.</p>";
 }
-window.removeFood=i=>{let d=ensureDay($("date").value),f=d.foods[i];d.foods.splice(i,1);d.intake=d.foods.reduce((a,x)=>a+Number(x.kcal),0);d.protein=d.foods.reduce((a,x)=>a+Number(x.protein),0);persist();renderAll()};
-function renderResult(){
- let d=ensureDay($("date").value),b=burnFor(d),intake=Number(d.intake||0),p=proteinFor(d);
- $("burn").textContent=Math.round(b).toLocaleString();$("intake").textContent=Math.round(intake).toLocaleString();
- $("deficit").textContent=Math.round(b-intake).toLocaleString();$("protein").textContent=p.toFixed(1)+" g";
+window.removeFood=i=>{let d=ensureDay();d.foods.splice(i,1);persist();renderAll()};
+function renderRecipePreview(){
+ let i=$("recipe").value;
+ if(i===""){ $("recipePreview").textContent="Select a recipe to preview calories and macros."; return; }
+ let r=db.recipes[Number(i)],s=Number($("servings").value||1);
+ $("recipePreview").textContent=`${(r.kcal*s).toFixed(1)} kcal · Protein ${(r.protein*s).toFixed(1)} g · Carbs ${(r.carbs*s).toFixed(1)} g · Fat ${(r.fat*s).toFixed(1)} g · Fiber ${(r.fiber*s).toFixed(1)} g`;
 }
-function renderRecipeList(){$("recipeList").innerHTML=db.recipes.length?db.recipes.map((r,i)=>`<span class="pill">${i+1}. ${esc(r.name)}: ${r.kcal} kcal / ${r.protein}g</span>`).join(""):"No recipes saved yet."}
-function renderWorkoutList(){$("workouts").innerHTML=db.workouts.map(w=>`<span class="pill">${esc(w[0])}: ${w[1]==null?"not locked":w[1]+" kcal"}</span>`).join("")}
-function dayEntries(){return Object.entries(db.days).sort((a,b)=>a[0].localeCompare(b[0]))}
+function renderRecipeList(){
+ $("recipeList").innerHTML=db.recipes.length?db.recipes.map((r,i)=>`<span class="pill">${i+1}. ${esc(r.name)}: ${Number(r.kcal).toFixed(1)} kcal · P ${Number(r.protein).toFixed(1)}g · C ${Number(r.carbs).toFixed(1)}g · F ${Number(r.fat).toFixed(1)}g · Fiber ${Number(r.fiber).toFixed(1)}g</span>`).join(""):"No recipes saved yet.";
+}
+function renderWorkoutList(){
+ $("workouts").innerHTML=db.workouts.map(w=>`<span class="pill">${esc(w[0])}: ${w[1]==null?"burn not set":w[1]+" kcal"}</span>`).join("");
+}
+function renderToday(){
+ let d=ensureDay(),f=foodTotals(d),wb=workoutBurn(d.workout1)+workoutBurn(d.workout2),cb=cardioBurn(d),b=1800+wb+cb,def=b-f.kcal;
+ const supps=db.supplements.map(s=>d.supp[s]?"✓":"—");
+ const cols=["WEEK","DAY","DATE","BASE","WORKOUT","W. BURN","CARDIO","C. BURN","TOTAL BURN","INTAKE","DEFICIT","PROTEIN","DARU",...db.supplements.map(esc)];
+ const vals=[d.week,d.day,d.date,"1,800",[d.workout1,d.workout2].filter(Boolean).join(" + ")||"—",wb,d.cardio||"—",cb,Math.round(b),Math.round(f.kcal),Math.round(def),f.protein.toFixed(1)+" g",Number(d.daru||0).toFixed(2),...supps];
+ $("todayTable").innerHTML="<tr>"+cols.map(c=>`<th>${c}</th>`).join("")+"</tr><tr>"+vals.map(v=>`<td>${esc(v)}</td>`).join("")+"</tr>";
+}
+function weekRows(){
+ const week=($("week").value.trim().toUpperCase()||"W25");
+ return Array.from({length:7},(_,i)=>{
+  const day=i+1,d=db.days[keyFor(week,day)];
+  return {day,d};
+ });
+}
+function rowData(day,d){
+ if(!d)return {day:"D"+day,date:"—",base:1800,workout:"—",wb:0,cardio:"—",cb:0,burn:0,intake:0,deficit:0,protein:0,daru:0,supp:db.supplements.map(()=> "—")};
+ let f=foodTotals(d),wb=workoutBurn(d.workout1)+workoutBurn(d.workout2),cb=cardioBurn(d),burn=1800+wb+cb;
+ return {day:"D"+day,date:d.date||"—",base:1800,workout:[d.workout1,d.workout2].filter(Boolean).join(" + ")||"—",wb,cardio:d.cardio||"—",cb,burn,intake:f.kcal,deficit:burn-f.kcal,protein:f.protein,daru:Number(d.daru||0),supp:db.supplements.map(s=>d.supp?.[s]?"✓":"—")};
+}
 function renderWeekly(){
- let rows=dayEntries().slice(-7);
- let t="<tr><th>DAY</th><th>DATE</th><th>BASE</th><th>WORKOUT</th><th>W. BURN</th><th>CARDIO</th><th>C. BURN</th><th>TOTAL BURN</th><th>INTAKE</th><th>DEFICIT</th><th>PROTEIN</th></tr>";
- rows.forEach(([date,d],i)=>{let w1=workoutBurn(d.workout1,d.customWorkout1),w2=workoutBurn(d.workout2,d.customWorkout2),wb=w1+w2,cb=cardioBurn(d),b=burnFor(d),p=proteinFor(d);
- let wn=[d.workout1,d.workout2].filter(Boolean).join(" + ")||"—";
- let cn=d.cardio?(d.cardio+" "+(d.km?d.km+" km":"")):"—";
- t+=`<tr><td>D${i+1}</td><td>${date}</td><td>${db.settings.base.toLocaleString()}</td><td>${esc(wn)}</td><td>${wb}</td><td>${esc(cn)}</td><td>${cb}</td><td>${Math.round(b)}</td><td>${Math.round(d.intake||0)}</td><td>${Math.round(b-(d.intake||0))}</td><td>${p.toFixed(1)} g</td></tr>`});
+ const rows=weekRows().map(x=>rowData(x.day,x.d));
+ const heads=["WEEK","DAY","DATE","BASE","WORKOUT","W. BURN","CARDIO","C. BURN","TOTAL BURN","INTAKE","DEFICIT","PROTEIN","DARU",...db.supplements];
+ let t="<tr>"+heads.map(h=>`<th>${esc(h)}</th>`).join("")+"</tr>";
+ rows.forEach(r=>{let vals=[($("week").value.trim().toUpperCase()||"W25"),r.day,r.date,"1,800",r.workout,r.wb,r.cardio,r.cb,Math.round(r.burn),Math.round(r.intake),Math.round(r.deficit),r.protein.toFixed(1)+" g",r.daru.toFixed(2),...r.supp];t+="<tr>"+vals.map(v=>`<td>${esc(v)}</td>`).join("")+"</tr>"});
+ const present=rows.filter((_,i)=>!!db.days[keyFor($("week").value.trim().toUpperCase()||"W25",i+1)]);
+ const n=present.length;
+ const totalKeys=["base","wb","cb","burn","intake","deficit","protein","daru"];
+ let sums={};totalKeys.forEach(k=>sums[k]=present.reduce((a,x)=>a+rowData(x.day,x.d)[k],0));
+ const total=[($("week").value.trim().toUpperCase()||"W25"),"TOTAL","",sums.base,sums.wb,sums.cb,sums.burn,sums.intake,sums.deficit,sums.protein.toFixed(1)+" g",sums.daru.toFixed(2)];
+ t+="<tr><th colspan='3'>TOTAL</th><td>"+sums.base+"</td><td>"+sums.wb+"</td><td></td><td>"+sums.cb+"</td><td>"+Math.round(sums.burn)+"</td><td>"+Math.round(sums.intake)+"</td><td>"+Math.round(sums.deficit)+"</td><td>"+sums.protein.toFixed(1)+" g</td><td>"+sums.daru.toFixed(2)+"</td>"+db.supplements.map(()=>"<td>—</td>").join("")+"</tr>";
+ t+="<tr><th colspan='3'>AVG</th><td>"+(n?Math.round(sums.base/n):0)+"</td><td>"+(n?Math.round(sums.wb/n):0)+"</td><td></td><td>"+(n?Math.round(sums.cb/n):0)+"</td><td>"+(n?Math.round(sums.burn/n):0)+"</td><td>"+(n?Math.round(sums.intake/n):0)+"</td><td>"+(n?Math.round(sums.deficit/n):0)+"</td><td>"+(n?(sums.protein/n).toFixed(1):"0.0")+" g</td><td>"+(n?(sums.daru/n).toFixed(2):"0.00")+"</td>"+db.supplements.map(()=>"<td>—</td>").join("")+"</tr>";
  $("weekly").innerHTML=t;
 }
-function renderSummary(){
- let rows=dayEntries().slice(-7);let n=rows.length||1;
- let sums={base:0,w:0,c:0,b:0,i:0,d:0,p:0};
- rows.forEach(([_,x])=>{sums.base+=db.settings.base;sums.w+=workoutBurn(x.workout1,x.customWorkout1)+workoutBurn(x.workout2,x.customWorkout2);sums.c+=cardioBurn(x);sums.b+=burnFor(x);sums.i+=Number(x.intake||0);sums.d+=burnFor(x)-Number(x.intake||0);sums.p+=proteinFor(x)});
- $("summary").innerHTML=`<tr><th>METRIC</th><th>TOTAL</th><th>DAILY AVERAGE</th></tr>
- <tr><td>Base Burn</td><td>${sums.base.toLocaleString()} kcal</td><td>${Math.round(sums.base/n).toLocaleString()} kcal</td></tr>
- <tr><td>Workout Burn</td><td>${Math.round(sums.w).toLocaleString()} kcal</td><td>${Math.round(sums.w/n)} kcal</td></tr>
- <tr><td>Walk/Cardio Burn</td><td>${Math.round(sums.c).toLocaleString()} kcal</td><td>${Math.round(sums.c/n)} kcal</td></tr>
- <tr><td><b>TOTAL BURN</b></td><td><b>${Math.round(sums.b).toLocaleString()} kcal</b></td><td><b>${Math.round(sums.b/n).toLocaleString()} kcal</b></td></tr>
- <tr><td>INTAKE</td><td>${Math.round(sums.i).toLocaleString()} kcal</td><td>${Math.round(sums.i/n).toLocaleString()} kcal</td></tr>
- <tr><td>PROTEIN</td><td>${sums.p.toFixed(1)} g</td><td>${(sums.p/n).toFixed(1)} g/day</td></tr>
- <tr><td><b>DEFICIT</b></td><td><b>${Math.round(sums.d).toLocaleString()} kcal</b></td><td><b>${Math.round(sums.d/n).toLocaleString()} kcal/day</b></td></tr>`;
-}
 function renderActivity(){
- let s=0,sb=0,ck=0,cb=0,kk=0,kb=0;
- dayEntries().slice(-7).forEach(([_,d])=>{let wb=workoutBurn(d.workout1,d.customWorkout1)+workoutBurn(d.workout2,d.customWorkout2);
- if(d.workout1&&d.workout1!=="Rest")s++;if(d.workout2&&d.workout2!=="Rest")s++;sb+=wb;
- if(d.cardio==="Cycling 40 km"){ck+=40;cb+=850}else if(d.cardio==="Walk"||d.cardio==="Run"){kk+=Number(d.km||0);kb+=cardioBurn(d)}});
- $("activity").innerHTML=`<p>🏋️ <b>Strength Training:</b> ${s} sessions | Burn: <b>${Math.round(sb)} kcal</b></p>
- <p>🚴 <b>Endurance (Cycling):</b> ${ck.toFixed(1)} km | Burn: <b>${Math.round(cb)} kcal</b></p>
- <p>🏃 <b>Cardio (Walk/Run):</b> ${kk.toFixed(1)} km | Burn: <b>${Math.round(kb)} kcal</b></p>
- <p><b>Total Active Burn: ${Math.round(sb+cb+kb)} kcal</b></p>`;
+ const rows=weekRows().filter(x=>x.d);
+ let strength=0,sb=0,cyclingSessions=0,cyclingKm=0,cyclingBurn=0,cardioSessions=0,cardioKm=0,cardioBurnTotal=0;
+ rows.forEach(x=>{let d=x.d,wb=workoutBurn(d.workout1)+workoutBurn(d.workout2);
+ [d.workout1,d.workout2].forEach(w=>{if(w&&w!=="Rest")strength++});sb+=wb;
+ if(d.cardio==="Cycling 40 km"){cyclingSessions++;cyclingKm+=40;cyclingBurn+=850}
+ else if(d.cardio==="Cycling 50 km"){cyclingSessions++;cyclingKm+=50;cyclingBurn+=1100}
+ else if(d.cardio==="Custom Cycling"){cyclingSessions++;cyclingKm+=Number(d.customCycling?.distance||0);cyclingBurn+=Number(d.customCycling?.burn||0)}
+ if(d.cardio==="Walk"||d.cardio==="Run/Walk Combo"||d.cardio==="Pure Run"||d.cardio==="Custom Cardio"){cardioSessions++;cardioKm+=Number(d.km||d.customCardio?.distance||0);cardioBurnTotal+=cardioBurn(d)}
+ });
+ $("activity").innerHTML=`<p>🏋️ <b>Strength Training:</b> ${strength} sessions | Burn: <b>${Math.round(sb)} kcal</b></p>
+ <p>🚴 <b>Endurance (Cycling):</b> ${cyclingSessions} sessions (${cyclingKm.toFixed(2)} km) | Burn: <b>${Math.round(cyclingBurn)} kcal</b></p>
+ <p>🏃 <b>Cardio (Walk/Run):</b> ${cardioSessions} sessions (${cardioKm.toFixed(2)} km total) | Burn: <b>${Math.round(cardioBurnTotal)} kcal</b></p>
+ <p><b>Total Activity Volume:</b> ${strength+cyclingSessions+cardioSessions} sessions | <b>Total Active Burn: ${Math.round(sb+cyclingBurn+cardioBurnTotal)} kcal</b></p>`;
 }
 function renderTakeaway(){
- let rows=dayEntries().slice(-7);if(!rows.length){$("takeaway").textContent="Log at least one day to generate the DFF takeaway.";return}
- let n=rows.length,avgD=rows.reduce((a,[_,d])=>a+burnFor(d)-Number(d.intake||0),0)/n,avgP=rows.reduce((a,[_,d])=>a+proteinFor(d),0)/n;
- let txt=avgD>800?"Deficit: अभी average deficit aggressive side पर है; केवल deficit बढ़ाने के लिए extra activity जोड़ना जरूरी नहीं है.":avgD>=500?"Deficit: current average deficit strong fat-loss territory में है; consistency और recovery को priority दें.":"Deficit: current average deficit comparatively moderate है.";
- let pt=avgP>=150?"Muscle & recovery shield: protein average strong है और resistance training logged है, जो muscle retention के लिए favorable setup है.":"Muscle & recovery shield: protein/reistance-training data को आगे consistently track करना महत्वपूर्ण रहेगा.";
- $("takeaway").innerHTML=`<h3>द 'स्वीट स्पॉट' डेफिसिट</h3><p>${txt}</p><h3>मसल एंड रिकवरी शील्ड</h3><p>${pt}</p><h3>बैलेंस की कला</h3><p>Activity volume, alcohol और recovery को एक साथ देखकर आगे का load तय करना बेहतर है. DFF core numbers rule-based हैं; कोई unsupported calorie/supplement figure automatically invent नहीं किया जाता.</p>`;
+ const rows=weekRows().filter(x=>x.d);
+ if(!rows.length){$("takeaway").textContent="Log at least one day to generate the Pro-Takeaway.";return}
+ const goal=db.goal==="Custom / Other"?db.customGoal||"Custom / Other":db.goal;
+ const n=rows.length;
+ let deficits=0,proteins=0,intakes=0,burns=0,daru=0;
+ rows.forEach(x=>{let r=rowData(x.day,x.d);deficits+=r.deficit;proteins+=r.protein;intakes+=r.intake;burns+=r.burn;daru+=r.daru});
+ const ad=deficits/n,ap=proteins/n,ai=intakes/n,ab=burns/n;
+ let deficitText=ad>800?"The average deficit is aggressive. Increasing the deficit further is not necessary.":ad>=500?"The average deficit is strong. Keep the deficit consistent rather than chasing extra burn.":"The average deficit is moderate. Progress should be judged from the trend, not one day.";
+ let goalText={
+ "Fat Loss":"For fat loss, the current focus should be a sustainable deficit, adequate protein and good training quality.",
+ "Weight Loss":"For weight loss, the key is consistent energy balance while keeping protein and training quality high.",
+ "Maintenance":"For maintenance, intake should move closer to total burn while keeping training and recovery consistent.",
+ "Recomposition":"For recomposition, prioritize resistance training, adequate protein and a controlled deficit rather than maximal calorie burn.",
+ "Muscle Gain / Weight Gain":"For muscle gain/weight gain, the priority is adequate intake, sufficient protein and progressive resistance training.",
+ "Custom / Other":"The Pro-Takeaway will use the selected custom objective as the main decision target."
+ }[goal]||"Use the selected goal as the main decision target.";
+ $("takeaway").innerHTML=`<h3>Goal: ${esc(goal)}</h3><p>${esc(goalText)}</p>
+ <h3>The Sweet Spot Deficit</h3><p>${esc(deficitText)} Average deficit: <b>${Math.round(ad)} kcal/day</b>.</p>
+ <h3>Muscle & Recovery Shield</h3><p>Average protein is <b>${ap.toFixed(1)} g/day</b>. Keep resistance training, adequate protein and recovery aligned with the selected goal.</p>
+ <h3>Balance & Recovery</h3><p>Average intake is <b>${Math.round(ai)} kcal/day</b> against average modeled burn of <b>${Math.round(ab)} kcal/day</b>. Alcohol logged: <b>${daru.toFixed(2)}</b> total for the selected week.</p>`;
 }
-function renderAll(){renderSelectors();loadDay();renderWeekly();renderSummary();renderActivity();renderTakeaway()}
-["workout1","customWorkout1","workout2","customWorkout2","cardio","km","customCardio"].forEach(id=>$(id).addEventListener("input",()=>{syncForm();renderResult()}));
-$("date").onchange=loadDay;
-$("base").onchange=()=>{db.settings.base=Number($("base").value)||1800;persist();renderAll()};
-$("walkRate").onchange=()=>{db.settings.walkRate=Number($("walkRate").value)||70;persist();renderAll()};
-document.querySelectorAll("[data-supp]").forEach(()=>{});
-$("addFood").onclick=()=>{let i=$("recipe").value;if(i==="")return alert("Select a recipe first.");let d=ensureDay($("date").value),r=db.recipes[Number(i)],s=Number($("servings").value||1);d.foods.push({name:r.name,servings:s,kcal:r.kcal*s,protein:r.protein*s});d.intake=d.foods.reduce((a,x)=>a+Number(x.kcal),0);d.protein=d.foods.reduce((a,x)=>a+Number(x.protein),0);persist();renderAll()};
-$("addRecipe").onclick=()=>{let n=$("rname").value.trim(),k=Number($("rkcal").value),p=Number($("rprotein").value||0);if(!n||k<=0)return alert("Enter recipe name and calories.");let i=db.recipes.findIndex(r=>r.name.toLowerCase()===n.toLowerCase());if(i>=0)db.recipes[i]={name:n,kcal:k,protein:p};else db.recipes.push({name:n,kcal:k,protein:p});persist();$("rname").value="";$("rkcal").value="";$("rprotein").value="";renderAll()};
-$("addWorkout").onclick=()=>{let n=$("wname").value.trim(),b=Number($("wburn").value);if(!n||b<0)return alert("Enter workout name and gross burn.");let i=db.workouts.findIndex(w=>w[0].toLowerCase()===n.toLowerCase());if(i>=0)db.workouts[i]=[n,b];else db.workouts.push([n,b]);persist();$("wname").value="";$("wburn").value="";renderAll()};
-$("saveDay").onclick=()=>{syncForm();persist();renderAll();$("saved").textContent="Saved locally: "+$("date").value};
-$("export").onclick=()=>{let blob=new Blob([JSON.stringify(db,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="DFF_Personal_Backup.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+function renderAll(){renderSelectors();loadDay()}
+["workout1","workout2","cardio","km","daru","week","day","date"].forEach(id=>$(id).addEventListener("input",()=>{if(id==="week"||id==="day"||id==="date"){loadDay();return}syncForm();updateCustomUI();renderAllExceptLoad()}));
+["week","day","date"].forEach(id=>$(id).addEventListener("change",()=>loadDay()));
+function renderAllExceptLoad(){renderFoods();renderRecipePreview();renderToday();renderWeekly();renderActivity();renderTakeaway()}
+["customActivity","customWeight","customDistance","customTime","customSpeed","cycleWeight","cycleDistance","cycleTime","cycleSpeed"].forEach(id=>$(id).addEventListener("input",()=>{updateCustomBurns();persist()}));
+$("recipe").addEventListener("change",renderRecipePreview);$("servings").addEventListener("input",renderRecipePreview);
+$("goal").addEventListener("change",()=>{db.goal=$("goal").value;persist();$("customGoalWrap").classList.toggle("hidden",db.goal!=="Custom / Other");renderTakeaway()});
+$("customGoal").addEventListener("input",()=>{db.customGoal=$("customGoal").value;persist();renderTakeaway()});
+$("addFood").onclick=()=>{
+ let i=$("recipe").value;if(i==="")return alert("Select a recipe first.");
+ let d=ensureDay(),r=db.recipes[Number(i)],s=Number($("servings").value||1);
+ d.foods=d.foods||[];d.foods.push({name:r.name,servings:s,kcal:r.kcal*s,protein:r.protein*s,carbs:r.carbs*s,fat:r.fat*s,fiber:r.fiber*s});
+ persist();renderAll();
+};
+$("addRecipe").onclick=()=>{
+ let n=$("rname").value.trim(),k=Number($("rkcal").value),p=Number($("rprotein").value||0),c=Number($("rcarbs").value||0),f=Number($("rfat").value||0),fi=Number($("rfiber").value||0);
+ if(!n||k<0)return alert("Enter a recipe name and calories.");
+ let i=db.recipes.findIndex(r=>r.name.toLowerCase()===n.toLowerCase()),obj={name:n,kcal:k,protein:p,carbs:c,fat:f,fiber:fi};
+ if(i>=0)db.recipes[i]=obj;else db.recipes.push(obj);
+ persist();["rname","rkcal","rprotein","rcarbs","rfat","rfiber"].forEach(id=>$(id).value="");renderAll();
+};
+$("addWorkout").onclick=()=>{
+ let n=$("wname").value.trim(),b=Number($("wburn").value);
+ if(!n||b<0)return alert("Enter workout name and gross burn.");
+ let i=db.workouts.findIndex(w=>w[0].toLowerCase()===n.toLowerCase());
+ if(i>=0)db.workouts[i]=[n,b];else db.workouts.push([n,b]);
+ persist();$("wname").value="";$("wburn").value="";renderAll();
+};
+$("saveDay").onclick=()=>{syncForm();persist();renderAll();$("saved").textContent="Saved locally: "+$("week").value+" D"+$("day").value+" · "+$("date").value};
+$("export").onclick=()=>{let blob=new Blob([JSON.stringify(db,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="DFF_Personal_V8_Backup.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
 $("importBtn").onclick=()=>$("importFile").click();
-$("importFile").onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.settings||!x.days)throw Error();db=x;persist();renderAll();alert("Backup imported successfully.")}catch(err){alert("This is not a valid DFF backup.")}};r.readAsText(f)};
+$("importFile").onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.settings||!x.days)throw Error();db=migrate(x);persist();renderAll();alert("Backup imported successfully.")}catch(err){alert("This is not a valid DFF backup.")}};r.readAsText(f)};
 if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 renderAll();
 </script>

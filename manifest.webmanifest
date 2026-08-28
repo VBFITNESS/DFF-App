@@ -1,9 +1,8 @@
 {
-  "name": "DFF Personal",
-  "short_name": "DFF",
-  "start_url": "./",
-  "display": "standalone",
-  "background_color": "#f3f4f6",
-  "theme_color": "#111827",
-  "icons": []
+  "name":"DFF Personal v8",
+  "short_name":"DFF v8",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#f3f4f6",
+  "theme_color":"#111827"
 }
